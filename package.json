@@ -1,0 +1,22 @@
+{
+  "name": "fcc-request-header-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crhain/fcc-request-header-service.git"
+  },
+  "author": "Carl Hain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crhain/fcc-request-header-service/issues"
+  },
+  "homepage": "https://github.com/crhain/fcc-request-header-service#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
