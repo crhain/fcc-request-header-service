@@ -10,14 +10,15 @@ app.get('/api/whoami', (request, response) =>{
     //let header = request.header;
     let ip = request.ip;
     let language = request.header('accept-language');
-    let software = request.header('user-agent');    
+    let software = request.header('user-agent');
+                              
     
+    //get ip address
     jsonObject.ipaddress = ip;
-    //Parse out language using regex XXX,    
-    jsonObject.language = language;
+    //Parse out language out    
+    jsonObject.language = language.slice(0, language.indexOf(','));
     //Parse out sytem-information using regex: User-Agent: Mozilla/<version> (<system-information>) <platform> (<platform-details>) <extensions>
-    jsonObject.software = software;
+    jsonObject.software = software.slice(software.indexOf('(') + 1, software.indexOf(')'));
     
-    console.log(request.headers);
     response.end(JSON.stringify(jsonObject));
 });
