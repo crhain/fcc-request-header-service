@@ -5,14 +5,20 @@ const port = process.argv[2] || 8080;
 app.listen(port);
 console.log('running server on port: ' + port);
 
+app.get('/', (request, response) => {
+    let html = '<!DOCTYPE html>';
+    html += '<html><body>';
+    html += '<h3>Please navigate to "/api/whoami" to use this service.</h3>';
+    html += '</body></html>';
+    response.end(html);
+});
+
 app.get('/api/whoami', (request, response) =>{
     let jsonObject = {ipaddress: null, language: null, software: null }
     //let header = request.header;
     let ip = request.ip;
     let language = request.header('accept-language');
-    let software = request.header('user-agent');
-                              
-    
+    let software = request.header('user-agent');                                  
     //get ip address
     jsonObject.ipaddress = ip;
     //Parse out language out    
