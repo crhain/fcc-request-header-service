@@ -1,17 +1,8 @@
 const express = require('express');
 const app = express();
-const port = process.argv[2] || 8080;
+const port = process.env.PORT || 5000;
 
-app.listen(port);
-console.log('running server on port: ' + port);
-
-app.get('/', (request, response) => {
-    let html = '<!DOCTYPE html>';
-    html += '<html><body>';
-    html += '<h3>Please navigate to "/api/whoami" to use this service.</h3>';
-    html += '</body></html>';
-    response.end(html);
-});
+app.use(express.static('public'));
 
 app.get('/api/whoami', (request, response) =>{
     let jsonObject = {ipaddress: null, language: null, software: null }
@@ -27,4 +18,8 @@ app.get('/api/whoami', (request, response) =>{
     jsonObject.software = software.slice(software.indexOf('(') + 1, software.indexOf(')'));
     
     response.end(JSON.stringify(jsonObject));
+});
+
+app.listen(port, ()=>{
+    console.log('running server on port: ' + port);
 });
